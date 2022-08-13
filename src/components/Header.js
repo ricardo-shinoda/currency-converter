@@ -1,8 +1,11 @@
 import React from 'react';
+import style from '../style/Header.module.css';
 
 function Header() {
     return (
-        <h1>Esse é o Header</h1>
+        <div className={ style.header }>
+            <h1>Conversor de Moedas</h1>
+        </div>
 
     )
 }
