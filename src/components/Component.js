@@ -2,8 +2,11 @@ import React, { useEffect, useState } from 'react';
 // import context from '../context/Context';
 import style from '../style/Component.module.css';
 function Api() {
-    const [ currency, setCurrency ] = useState(['BRL']);
+    const [ currency, setCurrency ] = useState([]);
     const [ value, setValue ] = useState([]);
+    const [ rate, setRate ] = useState([]);
+    const [ expense, setExpense ] = useState([]);
+    const [ currencies, setCurrencies ] = useState([]);
 
 
     useEffect(() => {
@@ -11,15 +14,41 @@ function Api() {
             const url = await fetch('https://economia.awesomeapi.com.br/json/all');
             const urlJson = await url.json();
             const urlArr = Object.keys(urlJson).filter((value) => value !== 'USDT');
-            setCurrency(urlArr);
+            setCurrencies(urlArr);
             
         };
         data();
     }, []);
 
-    // const handleValue = ({ target }) => { setValue(target.value) }
-    // console.log(value);
+    useEffect(() => {
+        const rate = async () => {
+            const url = await fetch('https://economia.awesomeapi.com.br/json/all');
+            const urlJson = await url.json();
+            const urlRate = Number(urlJson[currency].ask);
+            setRate(urlRate)
+            // console.log(urlJson);
+        };
+        rate();
+    });
 
+    const handleExpense = (e) => {
+        // e.preventDefault();
+        const valor = Number(value) * (rate);
+        setExpense(valor);
+    }
+
+    const handleReset = (e) => {
+        e.preventDefault();
+        Array.from(document.querySelectorAll('input')).forEach(input => (input.value = ''));
+    }
+
+    const handleCurChange = ({ target }) => { setCurrency(target.value) }
+
+// console.log(expense);
+// console.log(currency);
+// console.log(rate);
+// console.log(value);
+// console.log(expense);
     return (
         <div className={style.component}>
             <form>
@@ -36,15 +65,16 @@ function Api() {
                 <label>
                     <select
                         type="select"  
-                        placeholder="moeda 1"  
+                        placeholder="moeda 1"
+                        onChange={handleCurChange} 
                     >
-                        {currency.map((cur) => <option key={cur}>{cur}</option>)}
+                        {currencies.map((cur) => <option key={cur}>{cur}</option>)}
                     </select>
                 </label>
                 <button
                     type="button"
-                    // onClick={handleValue}
-                    >
+                    onClick={e => { handleReset(e); handleExpense() } }
+                >
                     Convert
                 </button>
                   {/* <label>
@@ -54,7 +84,7 @@ function Api() {
                         {secCurrency}
                     </select>
                 </label> */}
-                <p>{value} paragrafo</p>
+                <p>{expense}</p>
             </form>
         </div>
 
