@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 // import context from '../context/Context';
 import style from '../style/Component.module.css';
 function Api() {
-    const [ currency, setCurrency ] = useState([]);
+    const [ currency, setCurrency ] = useState(['USD']);
     const [ value, setValue ] = useState([]);
     const [ rate, setRate ] = useState([]);
     const [ expense, setExpense ] = useState([]);
@@ -34,7 +34,8 @@ function Api() {
     const handleExpense = (e) => {
         // e.preventDefault();
         const valor = Number(value) * (rate);
-        setExpense(valor);
+        const arr = (valor).toFixed(2);
+        setExpense(`R$ ${arr}`);
     }
 
     const handleReset = (e) => {
@@ -54,6 +55,7 @@ function Api() {
             <form>
                 <label>
                     <input
+                        className="input"
                         type="number"
                         name="value"
                         id="value"
@@ -77,14 +79,7 @@ function Api() {
                 >
                     Convert
                 </button>
-                  {/* <label>
-                    <select
-                    type="select"
-                    >
-                        {secCurrency}
-                    </select>
-                </label> */}
-                <p>{expense}</p>
+                <p className="result">{expense}</p>
             </form>
         </div>
 
