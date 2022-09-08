@@ -1,16 +1,36 @@
 .component {
-    /* display: block; */
+    /* width: 100%; */
+    display: inline-flexbox;
     background-color: aquamarine;
-    color: black;
-    padding: 80px;
-    /* margin-right: 10px; */
+    color: white;
+    /* margin: 50%; */
+    margin-top: 50%;
+    /* margin-right: 50%; */
+    /* align-items: center; */
+    align-content: center;
+    justify-content: center;
 }
 
 .result {
-    display: inline-block;
-    padding: 10px;
+    /* display: inline-block; */
+    margin: 100px;
 }
 
 .input {
-    padding: 10px;
+    display: block;
+    /* margin: 10px; */
+    width: 197px;
+
+}
+
+.select {
+    display: block;
+    /* margin: 10px; */
+    width: 200px;
+}
+
+.button {
+    display: block;
+    /* padding: 5px; */
+    width: 200px;
 }

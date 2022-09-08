@@ -55,7 +55,7 @@ function Api() {
             <form>
                 <label>
                     <input
-                        className="input"
+                        className={style.input}
                         type="number"
                         name="value"
                         id="value"
@@ -66,6 +66,7 @@ function Api() {
                 </label>
                 <label>
                     <select
+                        className={style.select}
                         type="select"  
                         placeholder="moeda 1"
                         onChange={handleCurChange} 
@@ -74,6 +75,7 @@ function Api() {
                     </select>
                 </label>
                 <button
+                    className={style.button}
                     type="button"
                     onClick={e => { handleReset(e); handleExpense() } }
                 >
