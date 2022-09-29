@@ -12,7 +12,7 @@ function App() {
   )
 }
 
-// testando a conexão com o git
-// Testando a conexão com o git após formatação.
+// testando a conexão com o gi
+//! Retestando a conexão com o git após formatação
 
 export default App;
